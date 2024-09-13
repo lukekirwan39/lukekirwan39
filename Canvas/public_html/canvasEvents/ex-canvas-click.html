@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/html.html to edit this template
+-->
+<html>
+  <head>
+    <title>Example of getting x and y position when i click</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+            #canvas
+            {
+                border:1px solid black;
+                width:500px;
+                height:500px;
+            }
+
+            #loadingMessage
+            {
+                position:absolute;
+                top:100px;
+                left:100px;
+                z-index:100;
+                font-size:50px;
+            }
+    </style>
+    
+    <script>
+      let canvas = null
+      let ctx = null
+      
+      let img = new Image()
+      img.src = "../images/geometry.jpeg"
+      
+      let mouseX = 0
+      let mouseY = 0
+      
+      let imageWidth = 100
+      let imageHeight = 100
+      
+      window.onload = onAllAssetsLoaded
+      document.write("<div id='loadingMessage'>Loading...</div>")
+      
+      function onAllAssetsLoaded()
+      {
+        //hide the webpage loading message
+        document.getElementById('loadingMessage').style.visibility = "hidden"
+        
+        canvas = document.getElementById("canvas")
+        ctx = canvas.getContext("2d")
+        canvas.width = canvas.clientWidth
+        canvas.height = canvas.clientHeight
+        canvas.addEventListener('click', clickHandler)
+        
+        renderCanvas()
+      }
+      
+      function renderCanvas()
+      {
+        ctx.clearRect(0, 0, canvas.width, canvas.height)
+        ctx.drawImage(img, mouseX, mouseY, imageWidth, imageHeight)
+      }
+      
+      function clickHandler(e)
+      {
+        if(e.which === 1)
+        {
+          let canvasBoundingRectangle = canvas.getBoundingClientRect()
+          mouseX = e.clientX - canvasBoundingRectangle.left - (imageWidth/2)
+          mouseY = e.clientY - canvasBoundingRectangle.top - (imageHeight/2)
+          
+          renderCanvas()
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <canvas id="canvas">
+      
+    </canvas>
+    <div> Click the mouse on the canvas to get the current x,y position within the canvas.
+          The coordinates will still work after the browser has been resize. Try resizing the browser to test this.
+          Note that this canvas is 500 by 500 pixels.
+    </div>
+  </body>
+</html>

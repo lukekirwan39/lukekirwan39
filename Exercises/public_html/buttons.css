@@ -1,0 +1,43 @@
+/*
+    Created on : 1 Nov 2023, 09:34:54
+    Author     : lukekirwan
+*/
+
+   .subscibe-button {
+      background-color: rgb(200,0,0);
+      color: white;
+      border: none;
+      height: 36px;
+      width: 105px;
+      border-radius: 2px;
+      cursor: pointer;
+      margin-right: 8px;
+  }
+  
+  .subscibe-button:hover{
+      
+  }
+   
+   .join-button {
+      background-color: white;
+      border-color: rgb(41,118,211);
+      border-style: solid;
+      border-width: 1px;
+      color: rgb(41,118,211);
+      border-radius: 2px;
+      cursor: pointer;
+   } 
+   
+   .tweet-button{
+      background-color: rgb(2, 137, 255);
+      color: white;
+      border: none;
+      height: 36px;
+      width: 80px;
+      border-radius: 18px;
+      font-weight: bold;
+      font-size: 15px;
+      cursor: pointer;
+      margin-left: 8px;
+   }
+

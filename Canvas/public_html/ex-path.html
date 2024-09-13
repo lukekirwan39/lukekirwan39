@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/html.html to edit this template
+-->
+<html>
+  <head>
+    <title>TODO supply a title</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+      let canvas = null
+      let ctx = null
+      
+      window.onload = onAllAssetsLoaded
+      document.write("<div id='loadingMessage'>Loading...</div>")
+      function onAllAssetsLoaded()
+      {
+        //hide the webpage loading message
+        document.getElementById("loadingMessage").style.visibility = "hidden"
+        
+        canvas = document.getElementById("pathCanvas")
+        ctx = canvas.getContext("2d")
+        canvas.width = canvas.clientWidth
+        canvas.height = canvas.clientHeight
+        
+        renderCanvas()
+      }
+      
+      function renderCanvas()
+      {
+        /* draw a square */
+        ctx.beginPath()
+        ctx.strokeStyle = "blue" /* stroke colour*/
+        ctx.moveTo(100, 100)
+        ctx.lineTo(200, 100)
+        ctx.lineTo(200, 200)
+        ctx.lineTo(100, 200)
+        ctx.lineTo(100, 100)
+        ctx.stroke()
+        ctx.closePath()
+        
+        /* draw a triangle */
+        ctx.beginPath()
+        ctx.strokeStyle = "red"
+        ctx.lineWidth = "10"
+        ctx.lineCap = "bevel"
+        ctx.moveTo(350, 100)
+        ctx.lineTo(400, 200)
+        ctx.lineTo(300, 200)
+        ctx.lineTo(350, 100)
+        ctx.lineTo(400, 200)
+        ctx.stroke()
+        
+        /* draw and fill a polygon*/
+        ctx.beginPath()
+        ctx.lineWidth = "20"
+        ctx.setLineDash([50, 20])
+        ctx.lineCap = "round"
+        ctx.lineJoin = "round" /* Can also be miter (default) or bevel */
+        ctx.strokeStyle = "green" /* stroke colour */
+        ctx.fillStyle = "yellow"
+        ctx.moveTo(100,300)
+        ctx.lineTo(50,400)
+        ctx.lineTo(200, 450)
+        ctx.lineTo(450, 400)
+        ctx.lineTo(200, 400)
+        ctx.lineTo(100, 300)
+        ctx.lineTo(50, 400)
+        ctx.fill()
+        ctx.stroke()
+      }
+    </script>
+    <style>
+      #pathCanvas
+      {
+         width: 500px;
+         height: 500px;
+         border: 1px solid black;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="pathCanvas">
+      
+    </canvas>
+  </body>
+</html>

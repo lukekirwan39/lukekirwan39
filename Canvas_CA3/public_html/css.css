@@ -1,0 +1,210 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/css.css to edit this template
+*/
+/* 
+    Created on : 14 Mar 2024, 10:46:01
+    Author     : lukekirwan
+*/
+*{
+   margin: 0;
+   padding: 0;
+}
+
+body{
+   background-color: gray;
+   transform: translate3d(0, 0, 0);
+}
+
+#lk_nav{
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   height: 50px;
+   border: 2px solid black;
+   margin-bottom: 10px;
+}
+
+#loadingMessage{
+   position:absolute;
+   top:100px;
+   left:100px;
+   z-index:100;
+   font-size:50px;
+}
+
+#lk_canvas{
+   border: 1px solid black;
+   width: 1000px;
+   height: 700px;
+   cursor: default;
+}
+
+footer{
+   background-color: #999999;
+   padding: 40px;
+   text-align: center;
+   margin-top: 10px;
+   display: flex;
+   align-items: center;
+   flex-direction: column;
+}
+
+@media (max-width: 600px){
+   nav, article{
+      width: 100%;
+      height: auto;
+   }
+}
+
+#lk_container{
+   display: flex;
+}
+
+#lk_toolsContainer{
+   display: flex;
+   align-content: flex-start;
+   flex-wrap: wrap;
+   flex-direction: column;
+   margin-left: 20px;
+   margin-right: 20px;
+   background-color: #999999;
+   padding: 2rem;
+}
+
+/* Switch taken from w3schools (https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_switch) */
+.lk_switch {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 20px;
+}
+
+.lk_switch input { 
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.lk_slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+.lk_slider:before {
+    position: absolute;
+    content: "";
+    height: 16px;
+    width: 20px;
+    left: 2px;
+    bottom: 2px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+input:checked + .lk_slider {
+    background-color: #2196F3;
+}
+
+input:focus + .lk_slider {
+    box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .lk_slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+}
+
+.lk_slider.round {
+    border-radius: 34px;
+}
+
+.lk_slider.round:before {
+    border-radius: 50%;
+}
+
+#lk_toolsContainer2{
+   display: flex;
+   align-content: flex-start;
+   flex-wrap: wrap;
+   flex-direction: column;
+   margin-left: 20px;
+   margin-right: 20px;
+   background-color: #999999;
+   padding: 2rem;
+}
+
+.lk_contact_info{
+   font-weight: bold;
+   font-size: 30px;
+   margin-bottom: 25px;
+}
+
+.lk_contact-info{
+   display: flex;
+   width: 100%;
+   max-width: 1200px;
+   align-items: center;
+   justify-content: center;
+   padding: 0 20px;
+}
+
+@media screen and (max-width:800px){
+   .lk_contact-info{
+      flex-direction: column;
+   }
+   .lk_icon{
+      width: 100%;
+      max-width: 300px;
+      margin: 10px 0;
+   }
+}
+
+.lk_icon{
+   padding: 0 10px;
+   margin: 0 10px;
+   width: calc(33% - 20px);
+   height: 150px;
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+}
+
+.lk_icon:hover .card-icon{
+   background: none;
+   color: blue;
+   transform: scale(1.6);
+}
+.lk_icon p{
+   margin-top: 20px;
+   font-weight: 300;
+   letter-spacing: 2px;
+   max-height: 0;
+   opacity: 0;
+   transition: 0.3s linear;
+}
+.lk_icon:hover p{
+   max-height: 40px;
+   opacity: 1;
+}
+
+.lk_card-icon{
+   font-size: 28px;
+   background: grey;
+   width: 60px;
+   height: 60px;
+   text-align: center;
+   line-height: 60px !important;
+   border-radius: 50%;
+   transition: 0.3s linear;
+}

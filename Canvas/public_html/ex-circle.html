@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/html.html to edit this template
+-->
+<html>
+  <head>
+    <title>TODO supply a title</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+      #canvas
+      {
+         border: 1px solid black;
+         width: 500px;
+         height: 500px;
+      }
+      
+      #loadingMessage
+      {
+         position: absolute;
+         top: 100px;
+         left: 100px;
+         z-index: 100;
+         font-size: 50px; 
+      }
+    </style>
+    <script>
+      let canvas = null
+      let ctx = null
+      
+      window.onload = onAllAssetsLoaded
+      document.write("<div id='loadingMessage'>Loading...</div>")
+      function onAllAssetsLoaded()
+      {
+        document.getElementById("loadingMessage").style.visibility = "hidden"
+        
+        canvas = document.getElementById("canvas")
+        ctx = canvas.getContext("2d")
+        canvas.width = canvas.clientWidth
+        canvas.height = canvas.clientHeight
+        
+        renderCanvas()
+      }
+      
+      function renderCanvas()
+      {
+        /* Red Circle */
+        ctx.beginPath()
+        ctx.fillStyle = "red"
+        ctx.arc(100, 100, 50, 0, Math.PI * 2)
+        ctx.fill()
+        
+        /* Semi-circle and two circle quadrants */
+        ctx.beginPath()
+        ctx.fillStyle = "red"
+        ctx.arc(300, 100, 50, 0, Math.PI)
+        ctx.fill()
+        ctx.closePath()
+        
+        ctx.beginPath()
+        ctx.fillStyle = "yellow"
+        ctx.arc(300, 100, 50, 0, 3*Math.PI/2, true)
+        ctx.lineTo(300, 100)
+        ctx.fill()
+        ctx.closePath()
+        
+        ctx.beginPath()
+        ctx.fillStyle = "blue"
+        ctx.arc(300, 100, 50, 3*Math.PI/2, Math.PI, true)
+        ctx.lineTo(300, 100)
+        ctx.fill()
+        ctx.closePath()
+      }
+    </script>
+  </head>
+  <body>
+    <canvas id="canvas">
+      
+    </canvas>
+  </body>
+</html>

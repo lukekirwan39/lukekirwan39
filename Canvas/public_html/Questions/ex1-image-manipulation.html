@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/html.html to edit this template
+-->
+<html>
+  <head>
+    <title>TODO supply a title</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+      #canvas
+      {
+         border: 1px solid black;
+         width: 500px;
+         height: 500px;
+      }
+      
+      #loadingMessage
+      {
+         position: absolute;
+         top: 100px;
+         left: 100px;
+         z-index: 100;
+         font-size: 50px; 
+      }
+    </style>
+    <script>
+      let canvas = null
+      let ctx = null
+      
+      let img = new Image()
+      img.src = "../images/prey.jpeg"
+      
+      window.onload = onAllAssetsLoaded
+      document.write("<div id='loadingMessage'>Loading...</div>")
+      function onAllAssetsLoaded()
+      {
+        // hide the webpage loading message
+        document.getElementById("loadingMessage").style.visibility = "hidden"
+        
+        canvas = document.getElementById("canvas")
+        ctx = canvas.getContext("2d")
+        canvas.width = canvas.clientWidth
+        canvas.height = canvas.clientHeight
+        
+        renderCanvas()
+      }
+      
+      let imageData = null
+      let data = null
+      function renderCanvas()
+      {
+        ctx.drawImage(img, 0, 0, canvas.width, canvas.height)
+        
+        // get the pixels from the canvas
+        // NOTE: getImageData() will only work if the image in drawImage is 
+        // on the same server as the webpage
+        imageData = ctx.getImageData(0, 0, canvas.width, canvas.height)
+        data = imageData.data
+        
+        // Manipulate the pixel data
+        for (let i = 0; i<data.length; i+= 4)
+        {
+          grayscale = (data[i + 0] + data[i + 1] + data[i + 2])/3
+          data[i + 0] = grayscale
+          data[i + 1] = grayscale
+          data[i + 2] = grayscale
+          data[i + 3] = grayscale 
+        }
+        
+        ctx.putImageData(imageData, 0, 0)
+      }
+    </script>
+  </head>
+  <body>
+    <canvas id="canvas">
+      
+    </canvas>
+  </body>
+</html>

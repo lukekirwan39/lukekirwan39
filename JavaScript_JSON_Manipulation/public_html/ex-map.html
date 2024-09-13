@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
+<html>
+  <head>
+    <title>JSON array map() example</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+      let employees = [{forename: "Anne", surname:"Aneglesey", role:"IT"},
+        {forename:"Brian", surname:"Brown", role:"HR"},
+        {forename:"Cathy", surname:"Connolly",role:"HR"}, 
+        {forename:"Dennis", surname:"Doherty", role:"IT"}, 
+        {forename:"Emma", surname:"Eagan", role:"HR"}] //array
+      
+      //Create a new array of string with forename and surname
+      let fullNameArray = employees.map(employee => `${employee.forename} ${employee.surname}`)
+      console.log(fullNameArray)
+      
+      //Create a new array of objects with only forename and surname
+      let fullNameJSONArray = employees.map(employee => ({forename: employee.forename, surname:employee.surname}))
+      console.log(fullNameJSONArray)
+      
+      let fullnameArray = []
+            for(let i = 0; i < employees.length; i++)
+            {
+                fullnameArray[i] = employees[i].forename + " " + employees[i].surname
+            }
+
+            console.log(`Array of strings`)
+            console.log(fullnameArray)
+
+
+            // let fullnameJSON = employees.map(employee => ({forename:employee.forename, surname:employee.surname}))
+            
+            // the code below is the for-loop equivalent of the above map()
+            
+            let fullnameJSON = []
+            for(i = 0; i < employees.length; i++)
+            {
+                fullnameJSON[i] = {forename:employees[i].forename, surname:employees[i].surname}
+            }
+            console.log(`Array of JSON objects`)
+            console.log(fullnameJSON) 
+    </script>
+  </head>
+  <body>
+    <div>View the console output in browser's Web DevTools (F12)</div>
+  </body>
+</html>

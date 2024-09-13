@@ -1,0 +1,27 @@
+<!DOCTYPE html> 
+<html> 
+    <head>
+        <title>Template Literal over several lines example</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <script>
+            let names = ["Anne", "Bob", "Cathy","Derek","Enda","Frank"]
+            console.log(names)
+            let htmlString = `<table border=1>
+                                <tr><th>Forename</th></tr>`
+  
+            for(let i = 0; i<names.length; i++)
+            {
+              htmlString += `<tr><td>${names[i]}</td></tr>`
+            }
+                              
+            htmlString += `</table>`
+
+            document.write(htmlString)
+        </script>
+    </head>
+
+    <body> 
+    </body> 
+</html>

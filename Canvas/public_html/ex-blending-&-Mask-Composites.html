@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/html.html to edit this template
+-->
+<html>
+  <head>
+    <title>TODO supply a title</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+      img,
+      canvas
+      {
+        width:500px;
+        height:500px;
+        border:thin solid black;
+      }
+
+      #loadingMessage
+      {
+        position:absolute;
+        top:100px;
+        left:100px;
+        z-index:100;
+        font-size:50px;
+      }
+    </style>
+    <script>
+      let canvas = null
+      let ctx = null
+      let width = null
+      let height = null
+      let originalImage = null
+      
+      window.onload = onAllAssetsLoaded
+      document.write("<div id='loadingMessage'>Loading...</div>")
+      function onAllAssetsLoaded()
+      {
+        // hide the webpage loading message
+        document.getElementById('loadingMessage').style.visibility = "hidden"
+        
+        originalImage = document.getElementById('originalImage')
+        canvas = document.getElementById('canvas')
+        ctx = canvas.getContext('2d')
+        width = originalImage.clientWidth
+        height = originalImage.clientHeight
+        canvas.width = width
+        canvas.height = height
+        
+        renderCanvas()
+      }
+      
+      function renderCanvas()
+      {
+        // 1) define the alpha area
+        ctx.beginPath()
+        ctx.fillStyle = "red" // any colour can be used
+        ctx.fillRect(100, 100, 200, 100)
+        ctx.closePath()
+        
+        // 2) select the alpha composite
+        ctx.globalCompositeOperation = 'source-in'
+        
+        // 3) draw the original image
+        // only the part that overlaps the alpha area will be visible
+        ctx.drawImage(originalImage, 0, 0, width, height)
+      }
+    </script>
+  </head>
+  <body>
+    <img id="originalImage" src="images/random.jpg" alt=""/>
+    <canvas id="canvas"></canvas>
+  </body>
+</html>

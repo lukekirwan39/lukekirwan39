@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/html.html to edit this template
+-->
+<html>
+  <head>
+    <title>TODO supply a title</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+      #canvas{
+         width: 500px;
+         height: 500px;
+         border: 1px solid black;
+      }
+      
+      #loadingMessage
+      {
+        position:absolute;
+        top:100px;
+        left:100px;
+        z-index:100;
+        font-size:50px;
+      }
+    </style>
+    <script>
+      let canvas = null
+      let ctx = null
+      
+      window.onload = onAllAssetsLoaded
+      document.write("<div id='loadingMessage'>Loading...</div>")
+      function onAllAssetsLoaded()
+      {
+        document.getElementById("loadingMessage").style.visibility = "hidden"
+        
+        canvas = document.getElementById("canvas")
+        ctx = canvas.getContext("2d")
+        canvas.width = canvas.clientWidth
+        canvas.height = canvas.clientHeight
+        
+        renderCanvas()
+      }
+      
+      function renderCanvas()
+      {
+        ctx.fillStyle = "red"
+        ctx.font = "100px Times Roman"
+        ctx.fillText("DkiT", 150, 150)
+        
+        ctx.strokeStyle = "blue"
+        ctx.font = "200px Arial"
+        ctx.lineWidth = "10"
+        ctx.strokeText("DkiT", 50, 350)
+      }
+    </script>
+  </head>
+  <body>
+    <canvas id="canvas">
+      
+    </canvas>
+  </body>
+</html>

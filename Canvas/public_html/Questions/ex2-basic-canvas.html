@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/html.html to edit this template
+-->
+<html>
+  <head>
+    <title>TODO supply a title</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+      let canvas = null
+      let ctx = null
+      
+      window.onload = onAllAssetsLoaded
+      document.write("<div id='loadingMessage'>Loading...</div>")
+      function onAllAssetsLoaded()
+      {
+        //hide loading message
+        document.getElementById('loadingMessage').style.visibility = "hidden"
+        
+        //Associate the javascript canvas variable with the HTML canvas element
+        canvas = document.getElementById("canvas")
+        
+        //Assign a graphics context to the canvas, so that we can draw on it
+        ctx = canvas.getContext("2d")
+        
+        canvas.width = canvas.clientWidth
+        canvas.height = canvas.clientHeight
+        
+        renderCanvas()
+      }
+      
+      function renderCanvas()
+      {
+        //Draw on the canvas
+        for(i = 0; i<(canvas.width/2); i++)
+        {
+          ctx.fillStyle = `rgb(255, ${i},${i})`
+          ctx.fillRect(i, i, canvas.width - (i*2), canvas.height - (i*2))
+        }
+      }
+    </script>
+    <style>
+      #canvas{
+         border: 1px solid black;
+         width: 500px;
+         height: 500px;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="canvas">
+      Your browser does not support the HTML5 'Canvas' tag.
+    </canvas>
+  </body>
+</html>

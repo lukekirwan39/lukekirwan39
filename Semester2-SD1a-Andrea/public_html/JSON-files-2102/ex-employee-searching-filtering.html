@@ -1,0 +1,141 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Course notes example code</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <style>
+            #employeesTable td,
+            #employeesTable th
+            {
+                min-width:100px;
+                text-align: left;
+            }
+
+            #employeesTable th
+            {
+                cursor:pointer;
+
+            }
+
+            #employeesTable th:hover
+            {
+                color:#888;
+            }
+        </style>
+
+        <script>
+            let employees = [{forename: "Ann", surname: "Connolly", role: "IT", salary: 50000, gender: "female"},
+                            {forename: "Dennis", surname: "Brown", role: "IT", salary: 45000, gender: "male"},
+                            {forename: "Cathy", surname: "Eagan", role: "HR", salary: 55000, gender: "female"},
+                            {forename: "Brian", surname: "Anglesey", role: "Accounts", salary: 5000, gender: "male"},
+                            {forename: "Emma", surname: "Doherty", role: "HR", salary: 60000, gender: "female"}]
+
+            let keys = Object.keys(employees[0])
+            
+            // get the list of roles from the employees array
+            let roles = employees.map(employee => employee.role)
+            // get the unique values and sort them
+            let roleCheckboxes = [...new Set(roles)].sort()
+            
+            let genders = employees.map(employee => employee.gender)
+            let genderCheckboxes = [...new Set(genders)].sort()
+            
+            function displayCheckboxes(divName, checkboxes)
+            {
+                let htmlString = ""
+                
+                checkboxes.forEach(role => {
+                    htmlString += `<label for="${role}">${role}</label>
+                    <input id="${role}" type="checkbox" checked="true" onclick="displayEmployeesTable()"/>`
+                })
+                document.getElementById(divName).innerHTML = htmlString
+            }
+   
+            // Keep track of the sort order and sort field. 
+            // Initially set the sort order to assending and sort field to forename
+            let sortAssendingOrder = true
+            let lastSortColumnName = "forename"
+                        
+            // Initialise the search value to be empty
+            let searchValue = ""
+            
+            // search() will be called whenever the user changes the value in the HTML search box 
+            function search(value)
+            {
+                searchValue = value
+                displayEmployeesTable()
+            }
+            
+            // Display the table based on the unique roles and search
+            function displayEmployeesTable()
+            {
+                // filter by search
+                let employeesToDisplay = employees.filter(employee => (employee.forename.toLowerCase().includes(searchValue.toLowerCase()) ||
+                                                                       employee.surname.toLowerCase().includes(searchValue.toLowerCase())))
+                
+                //filter by role
+                // look up from the html which ones are checked
+                let filterRoles = roleCheckboxes.filter(role => document.getElementById(role).checked)
+                // filter the employeesToDisplay array based on this
+                employeesToDisplay = employeesToDisplay.filter(employee => filterRoles.includes(employee.role))
+                
+                //filter by gender
+                let filterGenders = genderCheckboxes.filter(gender => document.getElementById(gender).checked)
+                employeesToDisplay = employeesToDisplay.filter(employee => filterGenders.includes(employee.gender))
+                
+                // create table HTML string
+                let arrow = sortAssendingOrder === true ? "▲" : "▼"
+                let htmlString = `<table id="employeesTable"><tr>`
+                keys.forEach(key => htmlString += `<th onclick=sort("${key}")>${key}${lastSortColumnName === key ? arrow : ""}</th>`)
+                htmlString += `</tr>`
+
+                employeesToDisplay.forEach(employee => {
+                    htmlString += `<tr>`
+
+                    keys.forEach(key => htmlString += `<td>${employee[key]}</td>`)
+
+                    htmlString += `</tr>`
+                })
+                
+                htmlString += `</table>`
+
+                // display table 
+                document.getElementById("employeeTable").innerHTML = htmlString
+            }
+
+            // Sort the employees based on the sort direction and sort field
+            function sort(key)
+            {
+                if (lastSortColumnName === key)
+                {
+                    sortAssendingOrder = !sortAssendingOrder
+                }
+                else
+                {
+                    lastSortColumnName = key
+                    sortAssendingOrder = true
+                }
+
+                if (sortAssendingOrder)
+                {
+                    employees.sort((a, b) => a[key] < b[key] ? -1 : 1)
+                }
+                else
+                {
+                    employees.sort((a, b) => a[key] < b[key] ? 1 : -1)
+                }
+                displayEmployeesTable()
+            }
+        </script>
+    </head>
+
+    <body onload="displayCheckboxes('roles', roleCheckboxes);displayCheckboxes('genders', genderCheckboxes);displayEmployeesTable()">
+        <label for="search">Search:</label><input type="search" id="search" oninput="search(this.value)">
+        <div id="roles"></div>
+        <div id="genders"></div>
+        <div id="employeeTable"></div>
+    </body>
+</html>

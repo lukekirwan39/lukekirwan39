@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/html.html to edit this template
+-->
+<html>
+  <head>
+    <title>Display all Employees from the company</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+      //array of employees
+      let employees = [{forename:"Ann", surname:"Anglesey", role:"IT", salary:100000}, 
+                             {forename:"Brian", surname:"Brown", role:"HR", salary:30000}, 
+                             {forename:"Cathy", surname:"Connolly",role:"HR", salary:50000}, 
+                             {forename:"Dennis", surname:"Doherty", role:"IT", salary:150000}, 
+                             {forename:"Emma", surname:"Eagan", role:"HR", salary:40000}]
+                           
+                           //output the employees in a table
+                           function viewJSONData()
+                           {
+                             //output the employees in a table in the div below
+                             let htmlString = `<table
+                             <tr>
+<th>Forenames</th>
+<th>Surname</th>
+<th>Role</th>
+<th>Salary</th>
+</tr>`;
+    
+    //interate through the array of employees
+    employees.forEach(employees => {
+      //curly brackets allows me to run multiple lines of code
+      htmlString +=
+              `<tr>
+      <td>${employees.forename}</td>
+      <td>${employees.surname}</td>
+      <td>${employees.role}</td>
+      <td>${employees.salary}</td>
+               </tr>`
+    })
+    
+    htmlString += `</table>`
+    document.getElementById("employees").innerHTML = htmlString
+
+                        }
+
+                        //add a filter
+                        function filterByRole(thisRole)
+                        {
+                          //filter and display
+                          let hrEmployees = employees.filter(employee => employee.role === thisRole)
+
+                          //output the employees in a table in a div below
+                          let htmlString = `<table>`
+
+                          hrEmployees.forEach(employees => {
+                           htmlString +=
+                                   `<tr>
+                           <td>${employees.forename}</td>
+                           <td>${employees.surname}</td>
+                           <td>${employees.role}</td>
+                           <td>${employees.salary}</td>
+                                    </tr>`
+                        })
+                        htmlString += `</table>`
+                        document.getElementById("employees").innerHTML = htmlString
+                      }
+                           
+    </script>
+  </head>
+  <body onload="viewJSONData()">
+    <select onchange="filterByRole(this.value)">
+      <option>IT</option>
+      <option>HR</option>
+    </select>
+    <div id="employees">Employee data will display here</div>
+    
+  </body>
+</html>

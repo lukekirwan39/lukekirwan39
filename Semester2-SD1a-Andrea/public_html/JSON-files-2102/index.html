@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
+<html>
+    <head>
+        <title>JSON array map() example</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script>
+            let employees = [{forename: "Ann", surname: "Anglesey", role: "IT"},
+                             {forename: "Brian", surname: "Brown", role: "HR"}, 
+                             {forename:"Cathy", surname:"Connolly",role:"HR"}, 
+                             {forename:"Dennis", surname:"Doherty", role:"IT"}, 
+                             {forename:"Emma", surname:"Eagan", role:"HR"}] // array of objects
+            
+            //Create a new array of strings with forename and surname
+            let fullnameArray = employees.map(employee => `${employee.forename} ${employee.surname}`)
+            console.log(fullnameArray)
+            
+            //Create a new array of objects with only forename and surname
+            let fullnameJSONArray = employees.map(employee => ({forename:employee.forename, surname:employee.surname}))
+            console.log(fullnameJSONArray)
+        </script>
+    </head>
+    <body>
+        <div>View the console output in browser's Web DevTools (F12)</div>
+    </body>
+</html>

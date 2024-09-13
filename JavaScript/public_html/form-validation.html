@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/html.html to edit this template
+-->
+<html>
+  <head>
+    <title>Form Validation</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+      
+      let formHasNoErrors = true;
+
+      function isFormValid()
+      {
+          if(document.getElementById("name").value.length === 0)
+          {
+              //nothing has been entered
+              document.getElementById("nameErrorMessage").innerHTML = "Please enter a name";
+              formHasNoErrors = false;
+          }
+          else
+          {
+              document.getElementById("nameErrorMessage").innerHTML = "";
+          }
+          
+          if(document.getElementById("address").value.length === 0)
+          {
+              document.getElementById("addressErrorMessage").innerHTML = "Please enter an address";
+              formHasNoErrors = false;
+          }
+          else
+          {
+              document.getElementById("addressErrorMessage").innerHTML = "";
+          }
+
+          if(formHasNoErrors)
+          {
+              return true;
+          }
+          else
+          {    
+              return false;
+          }
+      }
+
+    </script>
+    <style>
+      #form{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: center;
+}
+#name{
+   background-color: blanchedalmond;
+   display: flex;
+   border-style: solid;
+   border-width: 2px;
+   border-color: black;
+}
+
+#address{
+   background-color: blanchedalmond;
+   display: flex;
+   border-style: solid;
+   border-width: 2px;
+   border-color: black;
+}
+
+#addressErrorMessage{
+   color: red;
+}
+
+#nameErrorMessage{
+   color: red;
+}
+
+#button{
+   background-color: rgb(200,0,0);
+   color: white;
+   border: none;
+   height: 36px;
+   width: 105px;
+   border-radius: 2px;
+   cursor: pointer;
+   margin-right: 8px;
+   border-radius: 5%;
+}
+    </style>
+  </head>
+  <body>
+    <form id="form" action="form_demo.html" onsubmit="return isFormValid()">
+      <label for="name">Name: </label>
+      <input type="text" name="name" id="name"/>
+      <label id="nameErrorMessage"></label>
+      <br/>
+      <label for="address">Address: </label>
+      <textarea rows="5" id="address" name="address"></textarea>
+      <label id="addressErrorMessage"></label>
+      <br/>
+      <input id="button" type="submit" />
+    </form>
+  </body>
+</html>

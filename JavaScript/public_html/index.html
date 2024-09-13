@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
+<html>
+  <head>
+    <title>My First JavaScript Page</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+      function myFunction()
+      { 
+        let answer = confirm("Are you ok?");
+        if(answer)
+        {
+          document.write("That's great!");
+        }
+        else
+        {
+          let answer2 = prompt("Is there anything I could do?");
+          document.write("You've said: "+answer2);
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <button onclick="myFunction()">Click Me!</button>
+  </body>
+</html>

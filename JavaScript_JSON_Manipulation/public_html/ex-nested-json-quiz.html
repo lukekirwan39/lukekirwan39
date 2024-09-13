@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/html.html to edit this template
+-->
+<html>
+  <head>
+    <title>TODO supply a title</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+                  countryQuizData = {
+                name: "Countries Quiz",
+                description: "EU and other countries quiz",
+                rounds:
+                        [
+                            {
+                                name: "The EU",
+                                questions:
+                                        [
+                                            {
+                                                text: "How many countries are there in the EU?",
+                                                correct: 1,
+                                                choices:
+                                                        [
+                                                            "26",
+                                                            "27",
+                                                            "28"
+                                                        ]
+                                            }, 
+                                            {
+                                                text: "Which EU country has the largest population?",
+                                                correct: 1,
+                                                choices:
+                                                        [
+                                                            "France",
+                                                            "Germany"
+                                                        ]
+                                            },
+                                            {
+                                                text: "Which EU country has the smallest population?",
+                                                correct: 2,
+                                                choices:
+                                                        [
+                                                            "Luxemburg",
+                                                            "Cyprus",
+                                                            "Malta"
+                                                        ]
+                                            },
+                                            {
+                                                text: "What is the approximate population of the EU?",
+                                                correct: 1,
+                                                choices:
+                                                        [
+                                                            "400 million",
+                                                            "450 million",
+                                                            "500 million",
+                                                            "550 million",
+                                                            "600 million"
+                                                        ]
+                                            }
+                                        ]  
+                            },
+                            {
+                                name: "World Wide",                  
+                                questions:
+                                        [
+                                            {
+                                                text: "Which country has the largest population?",
+                                                correct: 2,
+                                                choices:
+                                                        [
+                                                            "Russia",
+                                                            "India",
+                                                            "China",                                               
+                                                            "USA"
+                                                        ]
+                                            },
+                                            {
+                                                text: "Which country occupies the largest area?",
+                                                correct: 0,
+                                                choices:
+                                                        [
+                                                            "Russia",
+                                                            "India",
+                                                            "China"
+                                                        ]
+                                            }
+                                        ]
+                            }
+                        ]
+            }
+            let htmlString = ``
+            let roundNumber = 0
+            let questionNumber = 0
+            let score = 0
+            function askQuestion()
+            {
+              //question text
+              htmlString = 
+                      `${countryQuizData.rounds[roundNumber].questions[questionNumber].text}<br/>`
+              //correct answer
+              
+              console.log(countryQuizData.rounds[roundNumber].questions[questionNumber].correct)
+              let correct = 
+                      countryQuizData.rounds[roundNumber].questions[questionNumber].correct
+              
+              countryQuizData.rounds[roundNumber].questions[questionNumber].choices.forEach((choice, index) => {
+                htmlString += `<input type='radio' name='quiz' onclick='submitAnswer(${index},${correct})' /> ${choice} <br/>`
+              })
+              document.getElementById("quiz").innerHTML = htmlString
+            }
+              
+            function submitAnswer(choiceIndex, correctIndex)
+            {
+              //check is the answer correct
+              //if it is we want to give a score for that
+              if(choiceIndex === correctIndex)
+              {
+                score++
+              }
+              //ask them the next question
+              questionNumber++
+              //Is this the last question in the round?
+              console.log(countryQuizData.rounds[roundNumber].questions.length)
+              if(questionNumber === countryQuizData.rounds[roundNumber].questions.length)
+              {
+                //round++ and set the question back to 0
+                roundNumber++
+                questionNumber = 0
+                //is there another round?
+                if(roundNumber === countryQuizData.rounds.length)
+                {
+//                  alert("done!")
+                  htmlString = `Game over. Your score is ${score}`
+                  document.getElementById("quiz").innerHTML = htmlString
+                  return
+                }
+                //no -> give their score
+              }
+              askQuestion()
+            }
+    </script>
+  </head>
+  <body onload="askQuestion()">
+    <div id="quiz"></div>
+  </body>
+</html>

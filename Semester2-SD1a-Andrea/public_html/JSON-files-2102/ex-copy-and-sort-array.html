@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/html.html to edit this template
+-->
+<html>
+    <head>
+        <title>JSON array sort() example</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script>
+            let arrayOfObjects = [{name: "Cathy", age: 25},
+                                  {name: "Anne", age: 22},
+                                  {name: "Dermot", age: 20},
+                                  {name: "Bill", age: 21},
+                                  {name: "Eric", age: 19}]
+            //copy the array
+            let ascendingOrderByName = [...arrayOfObjects]
+            //sort in ascending order
+            ascendingOrderByName.sort((a,b) => a.name < b.name?-1:1)
+            console.log(ascendingOrderByName)
+            
+            let descendingOrderByName = [...arrayOfObjects]
+            //sort in descending order
+            descendingOrderByName.sort((a,b) => a.name < b.name?1:-1)
+            console.log(descendingOrderByName)
+            
+            let ascendingOrderByAge = [...arrayOfObjects]
+            ascendingOrderByAge.sort((a,b) => a.age < b.age?-1:1)
+            console.log(ascendingOrderByAge)
+            
+            let descendingOrderByAge = [...arrayOfObjects]
+            descendingOrderByAge.sort((a,b) => a.age < b.age?1:-1)
+            console.log(descendingOrderByAge)
+            
+            
+            let employees = [{forename: "Ann", surname: "Anglesey", role: "IT", salary: 100000},
+                             {forename: "Brian", surname: "Brown", role: "HR", salary: 50000}, 
+                             {forename:"Cathy", surname:"Connolly",role:"HR", salary: 60000}, 
+                             {forename:"Dennis", surname:"Doherty", role:"IT", salary: 120000}, 
+                             {forename:"Emma", surname:"Eagan", role:"HR", salary: 30000}]
+                         
+            //sort employees table by salary ascending
+            let employeesBySalaryAsc = [...employees]
+            employeesBySalaryAsc.sort((a,b) => a.salary < b.salary?-1:1)
+            console.log(employeesBySalaryAsc)
+        </script>
+    </head>
+    <body>
+        <div>TODO write content</div>
+    </body>
+</html>

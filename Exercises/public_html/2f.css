@@ -1,0 +1,29 @@
+
+/* 
+    Created on : 1 Nov 2023, 09:37:16
+    Author     : lukekirwan
+*/
+
+.price{
+    color: rgb(0,118,0);
+    font-weight: bold;
+}
+
+.add-to-cart{
+    background-color: rgb(255,216,20);
+    border: none;
+    border-radius: 18px;
+    height: 29px;
+    width: 110px;
+    cursor: pointer;
+    margin-right: 5px;
+}
+
+.buy-now{
+    background-color: rgb(255,164,28);
+    border: none;
+    border-radius: 18px;
+    height: 29px;
+    width: 110px;
+    cursor: pointer;
+}

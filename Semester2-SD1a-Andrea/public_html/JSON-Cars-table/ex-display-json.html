@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/html.html to edit this template
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script>
+
+            let cars = [
+                {
+                    id: 0,
+                    model: "avensis",
+                    colour: "red",
+                    year: 2017,
+                    price: 35000
+                },
+                {
+                    id: 1,
+                    model: "yaris",
+                    colour: "white",
+                    year: 2015,
+                    price: 1000
+                },
+                {
+                    id: 2,
+                    model: "corolla",
+                    colour: "white",
+                    year: 2017,
+                    price: 20000
+                },
+                {
+                    id: 3,
+                    model: "avensis",
+                    colour: "red",
+                    year: 2015,
+                    price: 15000
+                },
+                {
+                    id: 4,
+                    model: "corolla",
+                    colour: "black",
+                    year: 2010,
+                    price: 4000
+                }
+            ]
+            // kinda like the auto incrementing primary key in databases
+            let uniqueId = cars.length
+
+            function viewJSONData(selectedCars)
+            {
+                let htmlString = `<table>
+                                    <tr>
+                                        <th>Model</th>
+                                        <th>Colour</th>
+                                        <th>Year</th>
+                                        <th>Price</th>
+                                    </tr>`
+                // iterate through the array of cars
+                selectedCars.forEach(car =>
+                {
+                    //curly brackets allows you to run multiple lines of code
+                    htmlString += `<tr>
+                                        <td>${car.model}</td>
+                                        <td>${car.colour}</td>
+                                        <td>${car.year}</td>
+                                        <td>${car.price}</td>
+                                        <td><input type="button" value="Delete" onclick="deleteCar(${car.id})"/></td>
+                                    </tr>`
+                })
+
+                htmlString += `</table><br>
+                                ${selectedCars.length} cars found.`
+
+                document.getElementById("cars").innerHTML = htmlString
+            }
+
+            function addCar(model, colour, year, price)
+            {
+                //create a new car object
+                let newCar = {id: uniqueId, model: model, colour: colour, year: year, price: price}
+                cars.push(newCar)
+                
+                uniqueId++
+                
+                viewJSONData(cars)
+                document.getElementById('addModel').value = ""
+                document.getElementById('addColour').value = ""
+                document.getElementById('addYear').value = ""
+                document.getElementById('addPrice').value = ""
+            }
+            function modifyCar(id, model, colour, year, price)
+            {
+                //go through all cars in the array
+                cars.forEach(car => 
+                {
+                    // check is the id of this car the same as 
+                    // the one I'm editing
+                    if (car.id === parseInt(id))
+                    {
+                        car.model = model
+                        car.colour = colour
+                        car.year = year
+                        car.price = price
+                    }
+                })
+                viewJSONData(cars)
+            }
+            function deleteCar(id)
+            {
+                let selectedIndex = 0
+                //go through all cars in the array
+                cars.forEach((car, index) => 
+                {
+                    if (car.id == id)
+                    {
+                        selectedIndex = index
+                    }
+                })
+                //delete that car
+                cars.splice(selectedIndex, 1)
+                viewJSONData(cars)
+                
+                document.getElementById('deleteID').value = ""
+            }
+            function searchCarsByColour(colour)
+            {
+                const selectedCars = cars.filter(car => car.colour === colour)
+                //console.log(selectedCars)
+                viewJSONData(selectedCars)
+                // display the selectedCars in the table
+
+                return selectedCars // pass back the array with only that colour car
+            }
+            // testing does it work?
+            // let selectedCars = searchCarsByColour("red")
+            // console.log(selectedCars)
+
+            function searchCarsByModel(model)
+            {
+                const selectedCars = cars.filter(car => car.model === model)
+                viewJSONData(selectedCars)
+            }
+            function searchCarsByID(id)
+            {
+                const selectedCars = cars.filter(car => car.id === id)
+                //show that array in the table
+                viewJSONData(selectedCars)
+                //this unique car is the first element:
+                let selectedCar = selectedCars[0]
+                return selectedCar
+            }
+            //testing does that function work?
+            // let selectedCar = searchCarsByID(4)
+            // console.log(selectedCar)
+
+        </script>
+        <style>
+            table {
+                width: 300px;
+                border-collapse: collapse;
+            }
+            th {
+                background: gray;
+                color: white;
+            }
+            tr:nth-child(odd)
+            {
+                background: rgba(100,100,100,0.5);
+            }
+            tr:nth-child(even)
+            {
+                background: white
+            }
+            label
+            {   
+                display: inline-block;
+                width: 15%;
+                margin-bottom: 5px;
+            }
+            #cars
+            {
+                margin-top: 5px;
+                display: flex;
+                flex-wrap: wrap;
+                flex-direction: column;
+                justify-content: center;
+                flex-direction: column;
+                align-items: center;
+            }
+        </style>
+    </head>
+    <body onload="viewJSONData(cars)">
+        <input type="button" value="Show all Cars" onclick="viewJSONData(cars)" /><br/>
+
+        <label for="searchByColour">Search by Colour</label>
+        <input type="search" id="searchByColour" oninput="searchCarsByColour(this.value)"/><br/>
+
+        <label for="searchByModel">Search by Model</label>
+        <input type="search" id="searchByModel" oninput="searchCarsByModel(this.value)"/><br/>
+
+        <fieldset>
+            <legend>Add Car</legend>
+            <label for="addModel">Model:</label>
+            <input type="text" id="addModel" /><br/>
+            
+            <label for="addColour">Colour:</label>
+            <input type="text" id="addColour" /><br/>
+            
+            <label for="addYear">Year</label>
+            <input type="text" id="addYear" /><br/>
+            
+            <label for="addPrice">Price:</label>
+            <input type="text" id="addPrice" /><br/>
+            
+            <input type="button" value="Add" onclick="addCar(document.getElementById('addModel').value, document.getElementById('addColour').value, document.getElementById('addYear').value, document.getElementById('addPrice').value)" />
+        </fieldset>
+        
+        <fieldset>
+            <legend>Modify Car</legend>
+            <label for="modifyID">ID:</label>
+            <input type="text" id="modifyID" /><br/>
+            
+            <label for="modifyModel">Model:</label>
+            <input type="text" id="modifyModel" /><br/>
+            
+            <label for="modifyColour">Colour:</label>
+            <input type="text" id="modifyColour" /><br/>
+            
+            <label for="modifyYear">Year</label>
+            <input type="text" id="modifyYear" /><br/>
+            
+            <label for="modifyPrice">Price:</label>
+            <input type="text" id="modifyPrice" /><br/>
+            
+            <input type="button" value="modify" 
+             onclick="modifyCar(document.getElementById('modifyID').value,document.getElementById('modifyModel').value, document.getElementById('modifyColour').value, document.getElementById('modifyYear').value, document.getElementById('modifyPrice').value)" />
+        </fieldset>
+        
+        <fieldset>
+            <legend>Delete Car</legend>
+            <label for="deleteID">ID:</label>
+            <input type="text" id="deleteID" /> 
+            <input type="button" value="Delete"
+             onclick="deleteCar(document.getElementById('deleteID').value)" />
+        </fieldset>
+        <div id="cars">Car details will be listed here</div>
+    </body>
+</html>

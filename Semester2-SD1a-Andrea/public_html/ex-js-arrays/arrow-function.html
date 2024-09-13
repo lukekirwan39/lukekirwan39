@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/html.html to edit this template
+-->
+<html>
+    <head>
+        <title>Functions and Arrow Functions</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script>
+            //create a function to return the square of any number
+            //traditional function example
+            function square(number)
+            {
+                return number * number
+            }
+            
+            //create cube using arrow functions
+            const cube = number => number * number * number
+            
+            let total = square(4)
+            console.log(`The square of 4 is: ${total}`) 
+            
+            let numbers = [1, 2, 7, 4]
+            // loop through the array
+            for (let i = 0; i < numbers.length; i++)
+            {
+                // call the function
+                total = square(numbers[i])
+                //output the result
+                console.log(`The square of ${numbers[i]} is: ${total}`)                
+                
+                total = cube(numbers[i])
+                console.log(`The cube of ${numbers[i]} is: ${total}`)
+            }
+            
+        </script>
+    </head>
+    <body>
+        <div>TODO write content</div>
+    </body>
+</html>

@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		
+		<title>
+			Regular Expressions Examples STUDENT
+		</title>
+		
+		<style type="text/css">
+			table {
+				border: 10px solid red
+			}
+			
+			td {
+				border: 5px solid blue
+			}
+			
+			th {
+				border: 5px solid maroon
+			}
+			
+			:invalid {
+				outline: none;
+				box-shadow: 0px 0px 7px #ff0000;
+				border-color: #ff0000;
+			}
+			
+			:valid {
+				outline: none;
+				box-shadow: 0px 0px 7px #00ff00;
+				border-color: #00ff00;
+			}
+			
+			input {
+				border: 1px solid black;
+				border-radius: 5px;
+				transition:.2s linear;
+				-webkit-transition:.2s linear;
+				-moz-transition:.2s linear;
+				margin: 10px
+			}
+
+			input:focus {
+				outline: none;
+				box-shadow: 0px 0px 7px #ff00ff;
+				border-color: #ff00ff;
+			}
+			
+			.complete {
+				background-color: lightgreen
+			}
+			
+			.incomplete {
+				background-color: orange			
+			}
+		</style>
+		
+		<script>
+		</script>
+	</head>
+	
+	<body>
+		<h1>HTML5 Regular Expressions for Validating Textboxes</h1>
+		
+		<p>
+			NOTES from WIKIPEDIA:
+		</p>
+		
+		<ul>
+			<li>Regular Expressions are a <b>sequence of characters</b>, mainly for use in <u>pattern matching</u> with strings.</li>
+			<li>Each character in a regular expression is either understood to be a <b>metacharacter</b> with its <u>special meaning</u>, or a <b>regular character</b> with its <u>literal meaning</u>.</li>
+			<li>Together, they can be used to identify <b>textual material of a given pattern</b>, or process <b>a number of instances of it</b> that can vary from a <u>precise equality</u> to a very general <u>similarity</u> of the pattern.</li>
+			<li>The pattern sequence itself is designed specifically to represent prescribed targets in <b>the most concise and flexible way</b>.</li>
+			<li>Regular Expressions are used widely in HTML5, Javascript, PHP and many other programming languages.</li>
+		</ul>
+		<br />
+		
+		<h2>
+			YOUR TASK: Complete the Regular Expression in each Row in the table below. Use the test data to check if your Regular Expression works. You test by clicking on the button at the bottom of the table. When you get the correct regular expression, change the background colour appropriately.
+		</h2>
+		
+		<h3>
+			The green cells in the first column have correct Regular Expressions. Use these to try to correctly figure out the missing regular expressions.
+		</h3>
+		
+		<form>
+			<table>
+				<thead>
+					<tr>
+						<th>Summary</th>
+						<th>The Expression itself (or an Example)</th>
+						<th>Textbox</th>
+					</tr>
+				</thead>
+				
+				<tbody>
+					<tr>
+						<td class="complete">A number, any length</td>
+						<td>[0-9]+</td>
+						<td><input type="text" size="10" required pattern="[0-9]+" title="Format a number please" /></td>
+					</tr>
+				
+					<tr>
+						<td class="complete">Two-digit number</td>
+						<td>[0-9]{2}</td>
+						<td><input type="text" size="10" required pattern="[0-9]{2}" title="Format '09' please" /></td>
+					</tr>
+				
+					<tr>
+						<td class="complete">Two-digit number, 1st:>5</td>
+						<td>[6-9][0-9]</td>
+						<td><input type="text" size="10" required pattern="[6-9][0-9]" title="Format '60' please" /></td>
+					</tr>
+				
+					<tr>
+						<td class="complete">Five-digit number, 1st:&gt;7 ; 2nd/3rd:&lt;4 ; 4th:3-7</td>
+						<td>e.g. 81260 or 93039, NOT 15983</td>
+						<td><input type="text" size="10" required pattern="[8-9][0-3]{2}[3-7][0-9]" title="?????" /></td>
+					</tr>
+				
+					<tr>
+						<td class="complete">An alphabetic string, any length</td>
+						<td>[a-zA-Z]+</td>
+						<td><input type="text" size="10" required pattern="[a-zA-Z]+" title="Format a number please" /></td>
+					</tr>
+				
+					<tr>
+						<td class="complete">Two lowercase letters between a-m followed by two uppercase letters between A-M</td>
+						<td>e.g. 'bgKB', NOT 'pqYT'</td>
+						<td><input name="txt01A" id="txt01A" type="text" size="10" required pattern="[a-z]{2}[A-Z]{2}" title="?????" /></td>
+					</tr>
+				
+					<tr>
+						<td class="complete">An alphanumeric string, any length</td>
+						<td>e.g. 'aW34TYgUY7I' or 'P8Pe2'</td>
+						<td><input type="text" size="10" required pattern="[a-zA-Z0-9]+" title="?????" /></td>
+					</tr>
+				
+					<tr>
+						<td class="complete">Your PPS Number</td>
+						<td>7 digits followed by a letter</td>
+						<td><input type="text" size="10" required pattern="[A-Z][0-9]{6}" title="?????" /></td>
+					</tr>
+				
+					<tr>
+						<td class="complete">Any length string, allowing alphabetic, numeric and '_'</td>
+						<td>e.g. '_34fere' or '54tT_tU6I7'</td>
+						<td><input type="text" size="10" required pattern="[A-Z a-z 0-9 _]+" title="?????" /></td>
+					</tr>
+				
+					<tr>
+						<td class="complete">Alphanumeric string of length 8, with 1st:_</td>
+						<td>e.g. _2s4f6h8</td>
+						<td><input type="text" size="10" required pattern="[_][A-Z a-z 0-9]{7}" title="?????" /></td>
+					</tr>
+				
+					<tr>
+						<td class="incomplete">Irish Mobile Phone</td>
+						<td>Format: (08X) XXX-XXXX</td>
+						<td><input type="text" size="10" required pattern="[08][0-9]{8}" title="?????" /></td>
+					</tr>
+				
+					<tr>
+						<td class="incomplete">Ringing an Irish Mobile Phone from abroad</td>
+						<td>Format: +353(8X)XXXXXXX</td>
+						<td><input type="text" size="10" required pattern="" title="?????" /></td>
+					</tr>
+				
+					<tr>
+						<td class="complete">Text starts with 'Hello'</td>
+						<td>^Hello</td>
+						<td><input type="text" size="10" required pattern="^Hello[a-zA-Z]+" title="Text should start with 'Hello'." /></td>
+					</tr>
+				
+					<tr>
+						<td class="complete">Text ends with 'World'</td>
+						<td>World$</td>
+						<td><input type="text" size="10" required pattern="[a-zA-Z]+World$" title="Text should end with 'World'." /></td>
+					</tr>
+				
+					<tr>
+						<td class="complete">Text begins AND ends with 'ABC'</td>
+						<td>ABC\b</td>
+						<td><input type="text" size="10" required pattern="[a-zA-Z]+ABC\b" title="Format: ABCaaaaaaABC" /></td>
+					</tr>
+				
+					<tr>
+						<td class="complete">Text begins AND ends with EITHER 'AB' OR 'YZ'</td>
+						<td>[AB|YZ][a-zA-Z]+[AB|YZ]</td>
+						<td><input type="text" size="10" required pattern="[AB|YZ][a-zA-Z]+[AB|YZ]" title="Text should begin AND end with EITHER 'AB' OR 'YZ'" /></td>
+					</tr>
+				
+					<tr>
+						<td class="incomplete">Text starts with 'QU', then at least one digit, and ends with 'ZX'</td>
+						<td>e.g. 'QU1ZX' or 'QU3498576349839ZX'</td>
+						<td><input type="text" size="10" required pattern="" title="?????" /></td>
+					</tr>
+				
+					<tr>
+						<td class="incomplete">3 Numbers, separated by either '-' or '/' or '_'</td>
+						<td>e.g. 334-234_5676</td>
+						<td><input type="text" size="10" required pattern="" title="?????" /></td>
+					</tr>
+				
+					<tr>
+						<td class="complete">Text starts with 'QU', may be a 4-digit number, and ends with 'ZX'</td>
+						<td>e.g. 'QU12365ZX' or 'QUZX'</td>
+						<td><input type="text" size="10" required pattern="^QU([0-9]{4})?ZX$" title="Text should start with 'QU'; there may be a 4-digit number;  and should end with 'ZX'" /></td>
+					</tr>
+				
+					<tr>
+						<td class="incomplete">U.S.A. Postcode, short or long</td>
+						<td>e.g. '01020' or '01020-5458'</td>
+						<td><input type="text" size="10" required pattern="" title="?????" /></td>
+					</tr>
+				
+					<tr>
+						<td class="complete">UK Postcode</td>
+						<td>VERY COMPLICATED!</td>
+						<td><input type="text" size="10" required pattern="[A-Za-z]{1,2}[0-9Rr][0-9A-Za-z]? [0-9][ABD-HJLNP-UW-Zabd-hjlnp-uw-z]{2}" title="?????" /></td>
+					</tr>
+				
+					<tr>
+						<td class="complete">ISBNs</td>
+						<td>VERY COMPLICATED!</td>
+						<td><input type="text" size="10" required pattern="(?:(?=.{17}$)97[89][ -](?:[0-9]+[ -]){2}[0-9]+[ -][0-9]|97[89][0-9]{10}|(?=.{13}$)(?:[0-9]+[ -]){2}[0-9]+[ -][0-9Xx]|[0-9]{9}[0-9Xx])" title="?????" /></td>
+					</tr>
+				
+					<tr>
+						<td class="complete">IP address v4 (e.g. 255.1.127.196)</td>
+						<td>VERY COMPLICATED!</td>
+						<td><input type="text" size="10" required pattern="((^|\.)((25[0-5])|(2[0-4]\d)|(1\d\d)|([1-9]?\d))){4}$" title="4 numbers 0-255, separated by 3 dots." /></td>
+					</tr>
+				
+					<tr>
+						<td class="incomplete">Time: 1</td>
+						<td>24-hour clock hh:mm:ss</td>
+						<td><input type="text" size="10" required pattern="" title="?????" /></td> 
+					</tr>
+				
+					<tr>
+						<td class="incomplete">Time: 2</td>
+						<td>12-hour clock (include "a.m." or "p.m.") [e.g.: 12:00:00a.m./1:00:00a.m./11:59:59a.m.]</td>
+						<td><input type="text" size="10" required pattern="" title="?????" /></td> 
+					</tr>
+				</tbody>
+			</table>
+			<input type="submit" value="Click to Validate" />
+		</form>
+		
+		<p>
+			From W3Schools and HTML5rocks.com Tutorials:
+		</p>
+					
+		<ol>
+			<li>
+				<a target="_blank" href="http://en.wikipedia.org/wiki/Regular_expression">Wikipedia: Regular Expressions</a>
+			</li>
+			
+			<li>
+				<a target="_blank" href="http://www.w3schools.com/js/js_regexp.asp">W3SCHOOLS: Regular Expressions in JavaScript</a>
+			</li>
+			
+			<li>
+				<a target="_blank" href="http://www.w3schools.com/jsref/jsref_obj_regexp.asp">W3SCHOOLS: Regular Expression Objects in JavaScript</a>
+			</li>
+
+			<li>
+				<a target="_blank" href="http://www.html5rocks.com/en/tutorials/forms/html5forms/">Making Forms Fabulous with HTML5</a>
+			</li>
+				
+			<li>
+				<a target="_blank" href="http://www.html5rocks.com/en/tutorials/forms/constraintvalidation/">Constraint Validation: Native Client Side Validation for Web Forms</a>
+			</li>
+			
+			<li>
+				<a target="_blank" href="http://regexone.com/cheatsheet">Regular Expressions Cheatsheet for PHP</a>
+			</li>			
+		</ol>		
+	</body>
+</html>

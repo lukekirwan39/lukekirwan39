@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
+<html>
+  <head>
+    <title>Examples removing semi-colons function</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+      // if you have 2 statements on one line, use a semi-colon
+//let x = 20 
+//let y = 30
+//let total = x + y; 
+
+let x = 20, 
+    y = 30,
+    total = x + y; 
+    
+console.log(`x + y = ${total}`)
+
+//default values (passed in a function)
+function setCountry(country = "Ireland"){
+    console.log(`Country is: ${country}`)
+}
+
+setCountry("France")
+setCountry()
+
+//let userCountry = prompt("Please enter your Country:")
+
+//read from the HTML input
+//console.log(document.getElementById("userCountry").value)
+
+
+function chooseCountry(){
+    let userCountry = document.getElementById("userCountry").value
+    
+    setCountry(userCountry)
+}
+
+    </script>
+  </head>
+  <body>
+    <p>View the console in browser's Web DevTools (F12)</p>
+    Enter your Country:
+    <input type="text" name="userCountry" id="userCountry"/>
+    <input type="button" value="Submit" onclick="chooseCountry()"/>
+  </body>
+</html>

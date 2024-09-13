@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/html.html to edit this template
+-->
+<html>
+  <head>
+    <title>Changing using DOM</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+      function changeText()
+      {
+        //change text based on user input
+        //connect to both elements (span and input)
+        let span = document.getElementById("output");
+        let textbox = document.getElementById("textbox");
+        console.log(textbox.type);
+
+        //get the value from the textbox
+
+        //output into span
+        span.innerHTML = textbox.value;
+        textbox.style.color = "red";
+
+        if(document.getElementById("textbox").value === "")
+        {
+            textbox.style.border = "1.5px solid red"; 
+        }
+        else
+        {
+            span.innerHTML = textbox.value;
+            textbox.style.border = "1.5px solid black";
+        }
+        
+      }
+    </script>
+  </head>
+  <body>
+    <button onclick="changeText()">Click Here</button>
+    <span id="output">replace me</span>
+    <input type="text" id="textbox"/>
+  </body>
+</html>

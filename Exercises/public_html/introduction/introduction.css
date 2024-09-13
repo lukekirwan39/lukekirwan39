@@ -1,0 +1,46 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/css.css to edit this template
+*/
+/* 
+    Created on : 8 Nov 2023, 14:23:50
+    Author     : lukekirwan
+*/
+*{
+    margin: 0;
+    padding: 0;
+}
+
+
+/*****Flex Container****/
+#container{
+    display: flex;
+    flex-direction: column;
+}
+
+#logo{
+    width: 200px;
+}
+header{
+    background-color: #7660DB;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%
+}
+nav{
+    background-color: red;
+}
+main{
+    background-color: green;
+}
+footer{
+    background-color: yellow;
+}
+
+#gallery{
+    
+}
+#gallery img{ /* add styles for the images in the gallery*/
+    width: 30%;
+}

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
+<html>
+  <head>
+    <title>TODO supply a title</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+      //create a JSON object
+      let person = 
+              {
+                name: "Anne",
+                age: 20
+              };
+      console.log(person.name);
+      
+      const setDetails = (name, age) => ({name: name, age: age});
+      
+      let person2 = setDetails("Mary", 21);
+      console.log(person2);
+      
+      //output the name
+      console.log(`the person's name is ${person2.name}`);
+      
+      //output the age
+      console.log(`the person's age is ${person2.age}`);
+      
+      people = 
+              [      
+                {name:"Anne", phone:1111, email:"a@a.com"},
+                {name:"Brian", phone:2222, email:"b@b.com"}, 
+                {name:"Cathy", phone:3333, email:"c@c.com"},
+                {name:"Cathy", phone:3333, email:"c@c.com"}
+              ]
+              
+      //try to output the phone number of the first person
+      console.log(people[0].phone)
+      
+      //output the email of the third person
+      console.log(people[2].email)
+      
+      //output the above people in a table
+      let htmlString = `<table border=1>
+    <tr>
+<th>Name</th>
+<th>Phone</th>
+<th>Email</th>
+</tr>`
+  
+  
+  people.forEach(person => {htmlString += 
+          `<tr><td>${person.name}
+<td>${person.phone}</td>
+<td>${person.email}</td></tr>`})
+  
+  htmlString += `</table>`
+
+  document.write(htmlString)
+
+    </script>
+  </head>
+  <body>
+    <div>TODO write content</div>
+  </body>
+</html>

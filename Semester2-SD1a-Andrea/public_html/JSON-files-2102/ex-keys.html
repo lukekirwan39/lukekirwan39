@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/html.html to edit this template
+-->
+<html>
+    <head>
+        <title>Example generating a table using Object.Keys()</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script>
+            let employees = [{forename: "Ann", surname: "Connolly", role: "IT", salary: 50000, gender:"female"},
+                            {forename: "Dennis", surname: "Brown", role: "IT", salary: 45000, gender:"male"},
+                            {forename: "Cathy", surname: "Eagan", role: "HR", salary: 55000, gender:"female"},
+                            {forename: "Brian", surname: "Anglesey", role: "Accounts", salary: 5000, gender:"male"},
+                            {forename: "Emma", surname: "Doherty", role: "HR", salary: 60000, gender:"female"}]
+                        
+            let keys = Object.keys(employees[0])
+            console.log(keys)
+            
+            // Keep track of the sort order and sort field. 
+            // Initially set the sort order to assending and sort field to forename
+            let sortAssendingOrder = true
+            let lastSortColumnName = "forename"
+            
+            // Initialise the search value to be empty
+            let searchValue = ""
+            
+            // search() will be called whenever the user changes the value in the HTML search box 
+            function search(value)
+            {
+                searchValue = value
+                displayEmployeesTable()
+            }
+            function displayEmployeesTable()
+            {
+                //filter 
+                // filter by search
+                let employeesToDisplay = employees.filter(employee => (employee.forename.toLowerCase().includes(searchValue.toLowerCase()) ||
+                                                                       employee.surname.toLowerCase().includes(searchValue.toLowerCase())))
+                                                               
+                //populate and display a <table>
+                htmlString = `<table>
+                                <tr>`
+                keys.forEach(key => 
+                {
+                    htmlString += `<th onclick=sort("${key}")>${key}</th>`
+                })
+                
+                htmlString += `</tr>`
+                
+                //data
+                employees.forEach(employee => 
+                {
+                    htmlString += `<tr>`
+                    keys.forEach(key => htmlString += `<td>${employee[key]}</td>`)
+                    htmlString += `</tr>`
+                })
+                
+                htmlString += `</table>`
+        
+                document.getElementById("employees").innerHTML = htmlString
+            }
+            // Sort the employees based on the sort direction and sort field
+            function sort(key)
+            {
+                if (lastSortColumnName === key)
+                {
+                    sortAssendingOrder = !sortAssendingOrder
+                }
+                else
+                {
+                    lastSortColumnName = key
+                    sortAssendingOrder = true
+                }
+
+                if (sortAssendingOrder)
+                {
+                    employees.sort((a, b) => a[key] < b[key] ? -1 : 1)
+                }
+                else
+                {
+                    employees.sort((a, b) => a[key] < b[key] ? 1 : -1)
+                }
+                displayEmployeesTable()
+            }
+        </script>
+    </head>
+    <body onload="displayEmployeesTable()">
+        <label for="search">Search</label><input type="search" id="search" oninput="search(this.value)"/>
+        <div id="employees">TODO write content</div>
+    </body>
+</html>

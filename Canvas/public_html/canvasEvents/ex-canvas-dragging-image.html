@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/html.html to edit this template
+-->
+<html>
+  <head>
+    <title>Course notes example code</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+            #canvas
+            {
+                border:1px solid black;
+                width:500px;
+                height:500px;
+            }
+
+            #loadingMessage
+            {
+                position:absolute;
+                top:100px;
+                left:100px;
+                z-index:100;
+                font-size:50px;
+            }
+    </style>
+    
+    <script>
+      let canvas = null
+      let ctx = null
+      let imageWidth = 100
+      let imageHeight = 100
+      let imageX = 250
+      let imageY = 250
+      
+      let img = new Image()
+      img.src = "../images/geometry.jpeg"
+      
+      let offsetX = 0
+      let offsetY = 0
+      
+      window.onload = onAllAssetsLoaded
+      document.write("<div id='loadingMessage'>Loading...</div>")
+      function onAllAssetsLoaded()
+      {
+        //hide the webpage loading message
+        document.getElementById('loadingMessage').style.visibility = "hidden"
+        
+        canvas = document.getElementById("canvas")
+        ctx = canvas.getContext("2d")
+        canvas.width = canvas.clientWidth
+        canvas.height = canvas.clientHeight
+        
+        renderCanvas()
+        
+        canvas.addEventListener('mousedown', mousdownHandler)
+        canvas.addEventListener('mousemove', moveHandler)
+      }
+      
+      function renderCanvas()
+      {
+        ctx.clearRect(0, 0, canvas.width, canvas.height)
+        ctx.drawImage(img, imageX, imageY, imageWidth, imageHeight)
+      }
+      
+      function mouseIsInsideImage(imageTopLeftX, imageTopLeftY, imageWidth, imageHeight, x, y)
+      {
+        if ((x > imageTopLeftX) && (y > imageTopLeftY))
+        {
+          if (x > imageTopLeftX)
+          {
+            if ((x - imageTopLeftX) > imageWidth)
+            {
+              return false // to the right of the image
+            }
+          }
+
+          if (y > imageTopLeftY)
+          {
+              if ((y - imageTopLeftY) > imageHeight)
+              {
+                  return false // below the image
+              }
+          }
+        }
+        else // above or to the left of the image
+        {
+            return false
+        }
+        return true // inside image
+      }
+      
+      function mousdownHandler(e)
+      {
+        if (e.which === 1) //left mouse button
+        {
+          let canvasBoundingRectangle = canvas.getBoundingClientRect()
+          mouseX = e.clientX - canvasBoundingRectangle.left
+          mouseY = e.clientY - canvasBoundingRectangle.top
+          if(mouseIsInsideImage(imageX, imageY, imageWidth, imageHeight, mouseX, mouseY))
+          {
+            offsetX = mouseX - imageX
+            offsetY = mouseY - imageY
+          }
+        }
+      }
+      
+      function moveHandler(e)
+      {
+        if(e.which === 1)
+        {
+          let canvasBoundingRectangle = canvas.getBoundingClientRect()
+          mouseX = e.clientX - canvasBoundingRectangle.left
+          mouseY = e.clientY - canvasBoundingRectangle.top
+          if(mouseIsInsideImage(imageX, imageY, imageWidth, imageHeight, mouseX, mouseY))
+          {
+            ctx.clearRect(0, 0, canvas.width, canvas.height)
+            imageX = mouseX - offsetX
+            imageY = mouseY - offsetY
+            renderCanvas()
+          }
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <canvas id="canvas">
+      Your browser does not support the HTML5 'Canvas' tag.
+    </canvas>
+    <div id = 'text'>
+      <p>Press the left mouse button on the image and drag the mouse to move the image.</p>
+    </div>
+  </body>
+</html>

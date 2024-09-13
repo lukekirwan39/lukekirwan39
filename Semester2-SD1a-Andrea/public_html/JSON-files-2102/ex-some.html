@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/html.html to edit this template
+-->
+<html>
+    <head>
+        <title>JSON array some() example</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script>
+            let employees = [{forename: "Ann", surname: "Anglesey", role: "IT", salary: 100000},
+                             {forename: "Brian", surname: "Brown", role: "HR", salary: 50000}, 
+                             {forename:"Cathy", surname:"Connolly",role:"HR", salary: 60000}, 
+                             {forename:"Dennis", surname:"Doherty", role:"IT", salary: 120000}, 
+                             {forename:"Emma", surname:"Eagan", role:"HR", salary: 30000}] // array of objects
+            
+            let name = "Andrea"
+            
+            // check if Cathy is in the employees array
+            let objectContainsName = employees.some(employee => employee.forename === name)
+            console.log(objectContainsName)
+            
+            if (objectContainsName)
+            {
+                // that name is FOUND!
+                document.write(`${name} is in the employees array`)
+            }
+            else
+            {
+                document.write(`No, ${name} is NOT in the employees array`)
+            }
+        </script>
+    </head>
+    <body>
+        <div>TODO write content</div>
+    </body>
+</html>

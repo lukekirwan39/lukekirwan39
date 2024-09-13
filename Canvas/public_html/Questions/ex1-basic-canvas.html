@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/html.html to edit this template
+-->
+<html>
+  <head>
+    <title>TODO supply a title</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+      let canvas = null
+      let ctx = null
+      
+      window.onload = onAllAssetsLoaded
+      document.write("<div id='loadingMessage'>Loading...</div>")
+      function onAllAssetsLoaded()
+      {
+        //hide the webpage loading message
+        document.getElementById('loadingMessage').style.visibility = "hidden";
+        
+        //associat the javascript canvas variable to the HTML canvas element
+        canvas = document.getElementById("canvas")
+        
+        //Assign a graphics context to the canvas, so that we can draw on it
+        ctx = canvas.getContext("2d")
+        
+        /*Give the canvas a width and height
+         * The width and height are in canvas logical units*/
+        canvas.width = canvas.clientWidth
+        canvas.height = canvas.clientHeight
+        
+        renderCanvas()
+      }
+      
+      function renderCanvas()
+      {
+        ctx.fillStyle = "red";
+        ctx.fillRect(0,0,canvas.width/2,canvas.height/2)
+        
+        ctx.fillStyle = "blue";
+        ctx.fillRect(0,canvas.height/2,canvas.width/2,canvas.height/2)
+        
+        ctx.fillStyle = "green";
+        ctx.fillRect(canvas.width/2,canvas.height/2,canvas.width/2,canvas.height/2)
+        
+        ctx.fillStyle = "yellow";
+        ctx.fillRect(canvas.width/2,0,canvas.width/2,canvas.height/2)
+      }
+    </script>
+    <style>
+      #canvas{
+         border: 1px solid black;
+         width: 500px;
+         height: 500px;
+      }
+      
+      #loadingMessage{
+         position:absolute;
+         top:100px;
+         left:100px;
+         z-index:100;
+         font-size:50px;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="canvas">
+      Your browser does not support the HTML5 'Canvas' tag.
+    </canvas>
+  </body>
+</html>

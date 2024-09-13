@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/html.html to edit this template
+-->
+<html>
+  <head>
+    <title>Course notes example code</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+            #canvas
+            {
+                border:1px solid black;
+                width:500px;
+                height:500px;
+            }
+
+            #loadingMessage
+            {
+                position:absolute;
+                top:100px;
+                left:100px;
+                z-index:100;
+                font-size:50px;
+            }
+    </style>
+    
+    <script>
+      let canvas = null
+      let ctx = null
+      
+      let radius = 10 //this is going to use to draw my scribbles
+      
+      let img = new Image()
+      img.src = "../images/geometry.jpeg"
+      
+      let img2 = new Image()
+      img2.src = "../images/stars.png"
+      
+      window.onload = onAllAssetsLoaded
+      document.write("<div id='loadingMessage'>Loading...</div>")
+      function onAllAssetsLoaded()
+      {
+        //hide the webpage loading message
+        document.getElementById('loadingMessage').style.visibility = "hidden"
+        
+        canvas = document.getElementById("canvas")
+        ctx = canvas.getContext("2d")
+        canvas.width = canvas.clientWidth
+        canvas.height = canvas.clientHeight
+        ctx.fillStyle = "red"
+        
+        setBackgroundImage(img)
+        
+        renderCanvas()
+        
+        canvas.addEventListener('mousemove', moveHandler)
+      }
+      
+      function renderCanvas()
+      {
+        ctx.drawImage(img, 0, 0, canvas.width, canvas.height)
+        ctx.drawImage(img2, 0, 0, canvas.width, canvas.height)
+      }
+      
+      function mouseIsInsideImage(imageTopLeftX, imageTopLeftY, imageWidth, imageHeight, x, y)
+      {
+        if ((x > imageTopLeftX) && (y > imageTopLeftY))
+        {
+          if (x > imageTopLeftX)
+          {
+            if ((x - imageTopLeftX) > imageWidth)
+            {
+              return false // to the right of the image
+            }
+          }
+
+          if (y > imageTopLeftY)
+          {
+              if ((y - imageTopLeftY) > imageHeight)
+              {
+                  return false // below the image
+              }
+          }
+        }
+        else // above or to the left of the image
+        {
+            return false
+        }
+        return true // inside image
+      }
+      
+      
+      function moveHandler(e)
+      {
+        if(e.which === 1)
+        {
+          let canvasBoundingRectangle = canvas.getBoundingClientRect()
+          mouseX = e.clientX - canvasBoundingRectangle.left
+          mouseY = e.clientY - canvasBoundingRectangle.top
+          
+          ctx.beginPath()
+          ctx.arc(mouseX, mouseY, radius, 0, Math.PI * 2)
+          ctx.fill()
+          ctx.closePath()
+        }
+      }
+      
+      function clearScreen()
+      {
+        ctx.clearRect(0, 0, canvas.width, canvas.height)
+      }
+      
+      function color(newColor)
+      {
+        ctx.fillStyle = newColor
+      }
+      
+      function radiusSize(newRadius)
+      {
+        radius = newRadius
+      }
+      
+      function setBackgroundImage(image)
+      {
+        ctx.drawImage(image, 0, 0, canvas.width, canvas.height)
+      }
+    </script>
+  </head>
+  <body>
+    <canvas id="canvas">
+      Your browser does not support the HTML5 'Canvas' tag.
+    </canvas>
+    <div id="tools">
+      <input type="button" value="Clear Screen" onclick="clearScreen()"/><br>
+      <input type="button" value="Background Image 1" onclick="setBackgroundImage(img)"/>
+      <input type="button" value="Background Image 2" onclick="setBackgroundImage(img2)"/><br>
+      <input type="button" value="Red" onclick="color('red')"/>
+      <input type="button" value="Yellow" onclick="color('yellow')"/>
+      <input type="button" value="Blue" onclick="color('blue')"/><br>
+      <input type="button" value="Thin" onclick="radiusSize(10)"/>
+      <input type="button" value="Thick" onclick="radiusSize(50)"/>
+    </div>
+    <div id = 'text'>
+      <p>😀</p>
+    </div>
+  </body>
+</html>

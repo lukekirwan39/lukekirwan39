@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/html.html to edit this template
+-->
+<html>
+  <head>
+    <title>Example using sort() array</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+      let names = ["Allen", "Mary", "Betty", "John"]
+      //let sortedNames = names.sort()
+      
+      //issue: both arrays are sorted
+      //copy the array, then sort the copy
+      let sortedNames = [...names]
+      
+      //then sort the copy
+      sortedNames.sort()
+      
+      console.log(`sortedNames: ${sortedNames}`)
+      
+      console.log(`names: ${names}`)
+    </script>
+  </head>
+  <body>
+    <div>TODO write content</div>
+  </body>
+</html>

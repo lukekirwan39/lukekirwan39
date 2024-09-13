@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
+<html>
+  <head>
+    <title>TODO supply a title</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+            #canvas
+            {
+                border:1px solid black;
+                width:500px;
+                height:500px;
+            }
+
+            #loadingMessage
+            {
+                position:absolute;
+                top:100px;
+                left:100px;
+                z-index:100;
+                font-size:50px;
+            }
+    </style>
+    <script>
+      let canvas = null
+      let ctx = null
+      
+      let offscreenCanvas
+      let offscreenCanvasCtx
+      
+      let img = new Image()
+      img.src = "images/stars.png"
+      
+      let img2 = new Image()
+      img2.src = "images/prey.jpeg"
+      
+      let offscreenCanvasImageX = 100 //x position of my offscreen canvas image
+      let offscreenCanvasImageY = 100
+      let offscreenCanvasImageWidth = 300
+      let offscreenCanvasImageHeight = 200
+      
+      window.onload = onAllAssetsLoaded
+      document.write("<div id='loadingMessage'>Loading...</div>")
+      function onAllAssetsLoaded()
+      {
+        //hide the webpage loading message
+        document.getElementById('loadingMessage').style.visibility = "hidden"
+        
+        /*associate the javascript canvas variable to the HTML canvas element*/
+        canvas = document.getElementById("canvas")
+        
+        /*Assign a graphics context to the canvas, so that we can draw on it */
+        ctx = canvas.getContext("2d")
+        
+        /*Give the canvas a widht and height.
+         * The width and height are in canvas logical units */
+        canvas.width = canvas.clientWidth
+        canvas.height = canvas.clientHeight
+        
+        offscreenCanvas = document.createElement('canvas')
+        offscreenCanvasCtx = offscreenCanvas.getContext("2d")
+        offscreenCanvas.width = canvas.clientWidth
+        offscreenCanvas.height = canvas.clientHeight
+        
+        renderCanvas()
+      }
+      
+      function renderCanvas()
+      {
+        ctx.drawImage(img, 0, 0, canvas.width, canvas.height)
+        
+        offscreenCanvasCtx.drawImage(img2, offscreenCanvasImageX, offscreenCanvasImageY, offscreenCanvasImageWidth, offscreenCanvasImageHeight)
+        
+        //image manipulation
+        imageData = offscreenCanvasCtx.getImageData(offscreenCanvasImageX, offscreenCanvasImageY, offscreenCanvasImageWidth, offscreenCanvasImageHeight)
+        data = imageData.data
+        
+        for(let i = 0; i<data.length; i += 4)
+        {
+          data[i+0] = 255 - data[+0]
+          data[i+1] = 255 - data[+1]
+          data[i+2] = 255 - data[+2]
+          data[i+3] = 255
+        }
+        offscreenCanvasCtx.putImageData(imageData, offscreenCanvasImageX, offscreenCanvasImageY)
+        
+        ctx.save()
+        ctx.translate(offscreenCanvasImageX + (offscreenCanvasImageWidth / 2), offscreenCanvasImageY + (offscreenCanvasImageHeight / 2))
+        ctx.rotate(Math.radians(45))
+        ctx.translate(-(offscreenCanvasImageX + (offscreenCanvasImageWidth / 2)), -(offscreenCanvasImageY + (offscreenCanvasImageHeight / 2)))
+        
+        //draw the offscreen canvas (layer) onto the screen's canvas
+        ctx.drawImage(offscreenCanvas, 0, 0, canvas.width, canvas.height)
+        ctx.restore()
+      }
+      
+      Math.radians = function(degrees)
+      {
+        return degrees * Math.PI / 180
+      }
+    </script>
+  </head>
+  <body>
+    <canvas id="canvas">
+      Your browser does not support the HTML5 'Canvas' tag.
+    </canvas>
+  </body>
+</html>

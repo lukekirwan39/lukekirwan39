@@ -1,0 +1,28 @@
+
+   .request-now{
+       background-color: black;
+       color: white;
+       border: none;
+       height: 35px;
+       width: 105px;
+       cursor: pointer;
+   }
+   
+   .add-to-cart{
+       background-color: rgb(255,216,75);
+       color: black;
+       border: none;
+       border-radius: 18px;
+       height: 30px;
+       width: 160px;
+       cursor: pointer;
+   }
+   
+   .sign-up{
+       background-color: rgb(46,164,79);
+       color: white;
+       border: none;
+       height: 35px;
+       width: 80px;
+       border-radius: 5px;
+   }

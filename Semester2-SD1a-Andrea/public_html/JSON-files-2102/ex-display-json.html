@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/html.html to edit this template
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script>
+            let cars = [
+                {
+                    model: "avensis",
+                    colour: "red",
+                    year: 2017,
+                    price: 35000
+                },
+                {
+                    model: "yaris",
+                    colour: "white",
+                    year: 2015,
+                    price: 1000
+                },
+                {
+                    model: "corolla",
+                    colour: "white",
+                    year: 2017,
+                    price: 20000
+                },
+                {
+                    model: "avensis",
+                    colour: "red",
+                    year: 2015,
+                    price: 15000
+                },
+                {
+                    model: "corolla",
+                    colour: "black",
+                    year: 2010,
+                    price: 4000
+                }
+            ]
+            
+            
+            
+            function viewJSONData()
+            {
+                let htmlString = `<table>
+                                    <tr>
+                                        <th>Model</th>
+                                        <th>Colour</th>
+                                        <th>Year</th>
+                                        <th>Price</th>
+                                    </tr>`
+                // iterate through the array of cars
+                cars.forEach(car => 
+                {
+                    //curly brackets allows you to run multiple lines of code
+                    htmlString +=  `<tr>
+                                        <td>${car.model}</td>
+                                        <td>${car.colour}</td>
+                                        <td>${car.year}</td>
+                                        <td>${car.price}</td>
+                                    </tr>`
+                })
+
+                htmlString += `</table><br>
+                                ${cars.length} cars found.`
+
+                document.getElementById("cars").innerHTML = htmlString
+            }
+        </script>
+        <style>
+            table {
+                width: 300px;
+                border-collapse: collapse;
+            }
+            th {
+                background: gray;
+                color: white;
+            }
+            tr:nth-child(odd)
+            {
+                background: rgba(100,100,100,0.5);
+            }
+            tr:nth-child(even)
+            {
+                background: white
+            }
+        </style>
+    </head>
+    <body onload="viewJSONData()">
+        <div id="cars">Car details will be listed here</div>
+    </body>
+</html>

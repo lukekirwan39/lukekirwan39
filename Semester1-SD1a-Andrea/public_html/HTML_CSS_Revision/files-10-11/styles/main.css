@@ -1,0 +1,94 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/css.css to edit this template
+*/
+/* 
+    Created on : 8 Nov 2023, 14:25:14
+    Author     : obriena1
+*/
+* {
+    margin: 0;
+    padding: 0;
+}
+/*  ********** Flex Container *********  */
+#container {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* make sure you add a width 100% to the block elements below (header, footer) */
+}
+#logo {
+    width: 50px
+}
+header {
+    background-color: #7660DB;
+    display: flex; /* flex container */
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+nav {
+    background-color: red;
+}
+.menu a, .menu li span {
+    text-decoration: none;
+    background-color: red;
+    display: block;
+    padding: 10px;
+}
+.menu a:hover, .menu a:active, .menu li:hover span {
+    background-color: white;
+    color: red;
+}
+.menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    /* display: flex; */ /* works best without a dropdown */ 
+}
+/* from https://derek.comp.dkit.ie/web_development/css/example_code/menus_with_dropdown.html */
+.menu li
+{
+   width:100px;     /* width for each list item. Not absolutely necessary for horizontal menus. */
+   text-align:center;  /* Not needed for either menu. */
+}
+
+.menu.horizontal li
+{
+   display:inline-block;  /* Force list items onto same line. */
+   float:left;            /* Force list items tight together. */
+}
+
+.menu li {
+    position: relative;
+}
+.menu ul ul {
+    position:absolute;  /* Needed for drop-down menus. */
+    visibility: hidden;
+}
+.menu ul li:hover ul {
+    visibility: visible;
+}
+main {
+    background-color: green;
+    width: 80%;
+}
+p {
+    margin: 8px 0;
+}
+.left {
+    float: left;
+    margin: 1%;
+}
+#gallery {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+#gallery img { /* add styles for the images in the gallery */
+    width: 30%;
+    margin-bottom: 10px;
+}
+footer {
+    background-color: yellow;
+    width: 100%;
+}

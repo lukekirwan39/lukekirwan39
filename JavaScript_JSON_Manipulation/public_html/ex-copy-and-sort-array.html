@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/html.html to edit this template
+-->
+<html>
+  <head>
+    <title>JSON array sort() example</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+      let arrayOfObjects = [{name: "Cathy", age: 25, salary: 100000},
+                            {name: "Anne", age: 22, salary:50000},
+                            {name: "Dermot", age: 20, salary:60000},
+                            {name: "Bill", age: 21, salary:120000},
+                            {name: "Eric", age: 19, salary: 30000}]                          
+    //copy the array
+    let ascendingOrderByName = [...arrayOfObjects]
+    
+    //sort in ascending order
+    ascendingOrderByName.sort((a, b) => a.name < b.name? -1:1)
+    console.log(ascendingOrderByName)
+    
+    //copy the array
+    let decendingOrderByName = [...arrayOfObjects]
+    //sort in decending oreder
+    decendingOrderByName.sort((a, b) => a.name < b.name? 1:-1)
+    console.log(decendingOrderByName)
+    
+    let ascendingOrderByAge = [...arrayOfObjects]
+    
+    ascendingOrderByAge.sort((a, b) => a.age < b.age? -1:1)
+    console.log(ascendingOrderByAge)
+    
+    let decendingOrderByAge = [...arrayOfObjects]
+    
+    decendingOrderByAge.sort((a, b) => a.age < b.age? 1:-1)
+    console.log(decendingOrderByAge)
+    
+    let employees = [{forename: "Anne", surname:"Aneglesey", role:"IT", salary: 100000},
+        {forename:"Brian", surname:"Brown", role:"HR", salary:50000},
+        {forename:"Cathy", surname:"Connolly",role:"HR", salary:60000}, 
+        {forename:"Dennis", surname:"Doherty", role:"IT", salary:120000}, 
+        {forename:"Emma", surname:"Eagan", role:"HR", salary: 30000}]
+    
+    let ascendingOrderBySalary = [...employees]
+      
+    ascendingOrderBySalary.sort((a, b) => a.salary < b.salary? -1:1)
+    console.log(ascendingOrderBySalary)
+
+    let decendingOrderBySalary = [...employees]
+
+    decendingOrderBySalary.sort((a, b) => a.salary < b.salary? 1:-1)
+    console.log(decendingOrderBySalary)
+    </script>
+  </head>
+  <body>
+    <div>View the console output in browser's Web DevTools (F12)</div>
+  </body>
+</html>

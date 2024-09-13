@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/html.html to edit this template
+-->
+<html>
+  <head>
+    <title>JSON array reduce() example</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+      let employees = [{forename: "Anne", surname:"Aneglesey", role:"IT", salary: 100000},
+        {forename:"Brian", surname:"Brown", role:"HR", salary:50000},
+        {forename:"Cathy", surname:"Connolly",role:"HR", salary:60000}, 
+        {forename:"Dennis", surname:"Doherty", role:"IT", salary:120000}, 
+        {forename:"Emma", surname:"Eagan", role:"HR", salary: 30000}] //array of objects
+      
+      console.log(`All Employees`)
+      console.log(employees)
+      
+      //get the total wage bill for the year
+      let totalSalary = employees.reduce((total, employee) => total += employee.salary, 0)
+      console.log(`The total salary is: ${totalSalary}`)
+      
+      //average = total/number of items being averaged
+      let avgSalary = totalSalary/employees.length
+      console.log(`All employees salary is: ${avgSalary}`)
+      
+      //output the mean average salary for each of IT, HR and for all employees
+      //filter the IT employees
+      let ITemployees = employees.filter(employee => employee.role === "IT")
+      
+      //get total salary
+      let totalITemployees = ITemployees.reduce((total, employee) => total += employee.salary, 0)
+      
+      //get average salary of IT employees
+      let ITAvgSalary = totalITemployees/employees.length
+      console.log(`IT employees salary is: ${ITAvgSalary}`)
+      
+      //get only HR employees
+      let HREmployees = employees.filter(employee => employee.role === "HR")
+      
+      //get total salary of HR employees
+      let totalHREmployees = HREmployees.reduce((total,employee)=> total +=employee.salary, 0)
+      
+      //get average of HR employees
+      let HRAvgSalary = totalHREmployees/employees.length
+      console.log(`HR employees salary is: ${totalHREmployees}`)
+    </script>
+  </head>
+  <body>
+     <div>View the console output in browser's Web DevTools (F12)</div>
+  </body>
+</html>
