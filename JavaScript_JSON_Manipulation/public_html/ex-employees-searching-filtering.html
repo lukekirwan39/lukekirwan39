@@ -1,9 +1,6 @@
 <!DOCTYPE html>
-<!--
-Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
-Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/html.html to edit this template
--->
-<html>
+
+<html lang="">
   <head>
     <title>Object.Keys()</title>
     <meta charset="UTF-8">
@@ -14,80 +11,80 @@ Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/html.html to edit this
  {forename: "Cathy", surname: "Eagan", role: "HR", salary: 55000, gender:"female"},
  {forename: "Brian", surname: "Anglesey", role: "Accounts", salary: 5000, gender:"male"},
  {forename: "Emma", surname: "Doherty", role: "HR", salary: 60000, gender:"female"}]
-      
+
       //get the keys using Object.keys()
       let keys = Object.keys(employees[0])
-      
+
       //get the list of roles from the employees array
       let roles = employees.map(employee => employee.role)
       console.log(roles)
-      
+
       //get the unique values and sort them
       let roleCheckboxes = [...new Set(roles)].sort()
-      
+
       function displayCheckBoxes()
       {
         let htmlString = ""
-        roleCheckboxes.forEach(role => 
+        roleCheckboxes.forEach(role =>
         {
           htmlString += `<label for="${role}">${role}</label>
-    <input id="${role}" type=checkbox checked="true" onclick="displayEmployeesTable()"/>`
+    <input id="${role}" type=checkbox checked="" onclick="displayEmployeesTable()"/>`
         })
         document.getElementById("roles").innerHTML = htmlString
       }
-      
+
       //keep track of the last column that was sorted
       //keep track of the sort order
       let sortAscendingOrder = true
       let lastSortColumnName = "forename"
-      
+
       // Initialise the search value to be empty
       let searchValue = "";
-      
+
       function search(value)
       {
         searchValue = value
         displayEmployeesTable()
       }
-      
+
       function displayEmployeesTable()
       {
         //use the searchValue to show a subset of employees
-        let employeesToDisplay = employees.filter(employee => 
+        let employeesToDisplay = employees.filter(employee =>
         (employee.forename.toLowerCase().includes(searchValue.toLowerCase()) ||
                 employee.surname.toLowerCase().includes(searchValue.toLowerCase())))
-        
+
         //filter by role
         //look up from the html which ones are checked
         let filterRoles = roleCheckboxes.filter(role => document.getElementById(role).checked)
-        
+
         //filtering the employeesToDisplay array based on this
         employeesToDisplay = employeesToDisplay.filter(employee => filterRoles.includes(employee.role))
-        
+
         let arrow = sortAscendingOrder === true?"▲":"▼"
-        let htmlString = `<table border=1 width=450 style="border-collapse: collapse" "cursor: pointer">`
-        
+        let htmlString = `<table style="border-collapse: collapse" "cursor: pointer">`
+
         htmlString += `<tr>`
         keys.forEach(key => htmlString += `<th onclick=sort("${key}")>${key}${lastSortColumnName === key? arrow:""}</th>`)
         htmlString += `</tr>`
-        
+
         //output a <tr> with all data for each of the employees
-        employeesToDisplay.forEach(employee => 
+        employeesToDisplay.forEach(employee =>
         {
           htmlString += `<tr>`
           keys.forEach(key => htmlString += `<td>${employee[key]}</td>`)
           htmlString += `</tr>`
         })
-        
+
         htmlString += `</table>`
-        
+
         document.getElementById("employeeTable").innerHTML = htmlString
       }
       function sort(key)
       {
         //check is it pulling through the correct key
 //        alert(key)
-        
+
         if(lastSortColumnName === key)
         {
           sortAscendingOrder = !sortAscendingOrder
@@ -97,7 +94,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/html.html to edit this
           lastSortColumnName = key
           sortAscendingOrder = true
         }
-        
+
         //sort array
         if(sortAscendingOrder)
         {
@@ -116,17 +113,17 @@ Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/html.html to edit this
       {
         cursor: pointer;
       }
-      
+
       #employeeTable th:hover
       {
         color: red;
         transition: 0.5s;
-      }  
+      }
     </style>
   </head>
   <body onload="displayCheckBoxes();displayEmployeesTable()">
     <label for="search">Search:</label><input type="search" id="search" oninput="search(this.value)"/>
     <div id="roles"></div>
-    <div id="employeeTable"></div>
+    <div id="employeeTable"></div>sdf
   </body>
 </html>
