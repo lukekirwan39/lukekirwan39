@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/html.html to edit this template
+-->
+<html>
+  <head>
+    <title>TODO supply a title</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+      let employees = [{forename:"Ann", surname:"Anglesey", role:"IT", salary:100000}, 
+                             {forename:"Brian", surname:"Brown", role:"HR", salary:30000}, 
+                             {forename:"Cathy", surname:"Connolly",role:"HR", salary:50000}, 
+                             {forename:"Dennis", surname:"Doherty", role:"IT", salary:150000}, 
+                             {forename:"Emma", surname:"Eagan", role:"HR", salary:40000}]
+                           
+                           let keys = Object.keys(employees[0])
+                           console.log(keys)
+                           
+                           function displayEmployeesTable()
+                           {
+                             //populate and display a <table>
+                             htmlString = `<table>
+                         <tr>`
+    keys.forEach(key =>
+    {
+      htmlString += `<th>${key}</th>`
+    })
+    
+    htmlString += `</tr>`
+    
+    //data
+    employees.forEach(employee => 
+    {
+      htmlString += `<tr>`
+      keys.forEach(key => htmlString += `<td>${employee[key]}</td>`)
+      htmlString += `</tr>`
+    })
+    
+    htmlString += `</table>`
+    
+    document.getElementById("employees").innerHTML = htmlString
+                           }
+    </script>
+  </head>
+  <body onload="displayEmployeesTable()">
+    <div id="employees">TODO write content</div>
+  </body>
+</html>

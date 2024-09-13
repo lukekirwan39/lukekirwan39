@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/html.html to edit this template
+-->
+<html>
+  <head>
+    <title>JSON array filter() example</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+      let employees = [{forename: "Anne", surname:"Aneglesey", role:"IT", salary: 100000},
+        {forename:"Brian", surname:"Brown", role:"HR", salary:50000},
+        {forename:"Cathy", surname:"Connolly",role:"HR", salary:60000}, 
+        {forename:"Dennis", surname:"Doherty", role:"IT", salary:120000}, 
+        {forename:"Emma", surname:"Eagan", role:"HR", salary: 30000}] //array of objects
+      
+      console.log(`All Employees`)
+      console.log(employees)
+      
+      //store only HR employees
+      let hrEmployees = employees.filter(employee => employee.role === "HR")
+      console.log(`HR Employees`)
+      console.log(hrEmployees)
+      
+      //store only IT employees
+      let itEmployees = employees.filter(employee => employee.role === "IT")
+      console.log(`IT Employees`)
+      console.log(itEmployees)
+      
+      //store only employees that earn more than 90000
+      let employeesOver90k = employees.filter(employee => employee.salary > 90000)
+      console.log(`Over 90000 Employees`)
+      console.log(employeesOver90k)
+    </script>
+  </head>
+  <body>
+    <div>TODO write content</div>
+  </body>
+</html>
